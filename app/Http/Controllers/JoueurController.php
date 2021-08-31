@@ -7,6 +7,7 @@ use App\Models\Joueur;
 use App\Models\Photo;
 use App\Models\Role;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class JoueurController extends Controller
 {
@@ -42,7 +43,13 @@ class JoueurController extends Controller
      */
     public function store(Request $request)
     {
-        $store = new Joueur();
+        $photo = new Photo;
+        Storage::put('public/img/', $request->file('src'));
+        $photo->src = $request->file('src')->hashName();
+        $photo->save();
+
+
+        $store = new Joueur;
         $store->nom = $request->nom;
         $store->prenom = $request->prenom;
         $store->age = $request->age;
@@ -52,7 +59,7 @@ class JoueurController extends Controller
         $store->pays = $request->pays;
         $store->role_id = $request->role_id;
         $store->equipe_id = $request->equipe_id;
-        $store->photo_id = $request->photo_id;
+        $store->photo_id = $photo->id;
         $store->save();
         return redirect('/joueur');
     }

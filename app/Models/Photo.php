@@ -2,10 +2,15 @@
 
 namespace App\Models;
 
+use App\Http\Controllers\JoueurController;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Photo extends Model
 {
     use HasFactory;
+    public function joueurs()
+    {
+        return $this->hasOne(Joueur::class);
+    }
 }
