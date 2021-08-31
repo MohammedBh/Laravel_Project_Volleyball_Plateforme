@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Continent;
 use App\Models\Equipe;
+use App\Models\Joueur;
 use Illuminate\Http\Request;
 
 class EquipeController extends Controller
@@ -54,9 +55,10 @@ class EquipeController extends Controller
      * @param  \App\Models\Equipe  $equipe
      * @return \Illuminate\Http\Response
      */
-    public function show(Equipe $equipe)
+    public function show($id)
     {
-        //
+        $show = Equipe::find($id);
+        return view('pages.equipes.show', compact('show'));
     }
 
     /**
@@ -65,9 +67,11 @@ class EquipeController extends Controller
      * @param  \App\Models\Equipe  $equipe
      * @return \Illuminate\Http\Response
      */
-    public function edit(Equipe $equipe)
+    public function edit($id)
     {
-        //
+        $edit = Equipe::find($id);
+        $continents = Continent::all();
+        return view('pages.equipes.edit', compact('edit', 'continents'));
     }
 
     /**
@@ -77,9 +81,16 @@ class EquipeController extends Controller
      * @param  \App\Models\Equipe  $equipe
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Equipe $equipe)
+    public function update(Request $request, $id)
     {
-        //
+        $update = Equipe::find($id);
+        $update->nom = $request->nom;
+        $update->ville = $request->ville;
+        $update->pays = $request->pays;
+        $update->joueursMax = $request->joueursMax;
+        $update->continent_id = $request->continent_id;
+        $update->save();
+        return redirect('/equipe');
     }
 
     /**
@@ -88,8 +99,10 @@ class EquipeController extends Controller
      * @param  \App\Models\Equipe  $equipe
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Equipe $equipe)
+    public function destroy($id)
     {
-        //
+        $destroy = Equipe::find($id);
+        $destroy->delete();
+        return redirect('/equipe');
     }
 }

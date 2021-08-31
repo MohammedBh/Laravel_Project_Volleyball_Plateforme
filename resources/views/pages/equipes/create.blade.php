@@ -47,6 +47,8 @@
                     <th scope="col">Pays</th>
                     <th scope="col">Max. Joueurs</th>
                     <th scope="col">Continent</th>
+                    <th></th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -58,6 +60,16 @@
                         <td>{{ $equipe->pays }}</td>
                         <td>{{ $equipe->joueursMax }}</td>
                         <td>{{ $equipe->continents->continent }}</td>>
+                        <td class="text-center">
+                            <a class="btn btn-success text-white" href="/equipe/{{ $equipe->id }}/edit">EDIT</a>
+                        </td>
+                        <td class="text-center">
+                            <form action="/equipe/{{ $equipe->id }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button class="btn btn-danger text-white" type="submit">DELETE</button>
+                            </form>
+                        </td>
                     </tr>
                 @endforeach
             </tbody>

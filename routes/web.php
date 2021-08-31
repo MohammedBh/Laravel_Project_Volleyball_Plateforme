@@ -4,6 +4,7 @@ use App\Http\Controllers\ContinentController;
 use App\Http\Controllers\EquipeController;
 use App\Http\Controllers\JoueurController;
 use App\Models\Continent;
+use App\Models\Equipe;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,11 +17,20 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+// INDEX -> HOME
 Route::get('/', function () {
     return view('welcome');
 });
 
+// INDEX & SHOW -> TEAMS
+Route::get('/allequipes', function () {
+    $allequipes = Equipe::all();
+    return view('pages.equipes.index', compact('allequipes'));
+});
+
+Route::get('/allequipes/{id}/show', [EquipeController::class, 'show']);
+
+// RESOURCES -> EQUIPE, CONTINENT, JOUEUR
 Route::resource('equipe', EquipeController::class);
 Route::resource('continent', ContinentController::class);
 Route::resource('joueur', JoueurController::class);

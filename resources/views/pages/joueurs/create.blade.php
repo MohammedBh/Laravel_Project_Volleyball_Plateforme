@@ -105,7 +105,6 @@
                         <td class="text-center">{{ $joueur->roles->role }}</td>
                         <td class="text-center">{{ $joueur->equipes->nom }}</td>
                         <td class="text-center">{{ $joueur->photos->src }}</td>
-                        <td></td>
                         <td class="text-center">
                             <a class="btn btn-success text-white" href="/joueur/{{ $joueur->id }}/edit">EDIT</a>
                         </td>
