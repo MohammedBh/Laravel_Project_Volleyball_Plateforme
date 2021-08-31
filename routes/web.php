@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ContinentController;
 use App\Http\Controllers\EquipeController;
+use App\Http\Controllers\JoueurController;
 use App\Models\Continent;
 use Illuminate\Support\Facades\Route;
 
@@ -22,3 +23,4 @@ Route::get('/', function () {
 
 Route::resource('equipe', EquipeController::class);
 Route::resource('continent', ContinentController::class);
+Route::resource('joueur', JoueurController::class);

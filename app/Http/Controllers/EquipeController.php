@@ -39,14 +39,11 @@ class EquipeController extends Controller
     public function store(Request $request)
     {
         $store = new Equipe;
-        $continent = new Continent;
-        $store->name = $request->name;
+        $store->nom = $request->nom;
         $store->ville = $request->ville;
         $store->pays = $request->pays;
         $store->joueursMax = $request->joueursMax;
-        $continent->continent = $request->continent;
-        $continent->save();
-        $store->continent_id = $continent->id;
+        $store->continent_id = $request->continent_id;
         $store->save();
         return redirect('/equipe');
     }

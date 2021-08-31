@@ -27,14 +27,14 @@
 
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Continent :</label>
-                <select class="form-select" aria-label="Default select example">
+                <select class="form-select" name="continent_id" aria-label="Default select example">
                     @foreach ($continents as $continent)
                         <option value="{{ $continent->id }}">{{ $continent->continent }}</option>
                     @endforeach
                 </select>
             </div>
 
-            <button type="submit" class="btn btn-primary">Créer</button>
+            <button type="submit" class="btn btn-primary text-white">Créer</button>
         </form>
     </section>
     <section>
@@ -47,9 +47,6 @@
                     <th scope="col">Pays</th>
                     <th scope="col">Max. Joueurs</th>
                     <th scope="col">Continent</th>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
@@ -60,7 +57,7 @@
                         <td>{{ $equipe->ville }}</td>
                         <td>{{ $equipe->pays }}</td>
                         <td>{{ $equipe->joueursMax }}</td>
-                        <td>{{ $equipe->continents->joueursMax }}</td>
+                        <td>{{ $equipe->continents->continent }}</td>>
                     </tr>
                 @endforeach
             </tbody>

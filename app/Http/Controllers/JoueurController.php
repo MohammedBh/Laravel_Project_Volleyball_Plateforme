@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Equipe;
 use App\Models\Joueur;
+use App\Models\Photo;
+use App\Models\Role;
 use Illuminate\Http\Request;
 
 class JoueurController extends Controller
@@ -14,7 +17,11 @@ class JoueurController extends Controller
      */
     public function index()
     {
-        //
+        $joueurs = Joueur::all();
+        $equipes = Equipe::all();
+        $roles = Role::all();
+        $photos = Photo::all();
+        return view('pages.joueurs.create', compact('joueurs', 'equipes', 'roles', 'photos'));
     }
 
     /**
@@ -35,7 +42,19 @@ class JoueurController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $store = new Joueur();
+        $store->nom = $request->nom;
+        $store->prenom = $request->prenom;
+        $store->age = $request->age;
+        $store->telephone = $request->telephone;
+        $store->email = $request->email;
+        $store->genre = $request->genre;
+        $store->pays = $request->pays;
+        $store->role_id = $request->role_id;
+        $store->equipe_id = $request->equipe_id;
+        $store->photo_id = $request->photo_id;
+        $store->save();
+        return redirect('/joueur');
     }
 
     /**

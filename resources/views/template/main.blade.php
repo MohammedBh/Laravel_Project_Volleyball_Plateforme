@@ -26,7 +26,7 @@
                             <a class="nav-link" href="/equipe">Créer une equipe</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">####</a>
+                            <a class="nav-link" href="/joueur">Inscrire joueur</a>
                         </li>
                     </ul>
                 </div>
