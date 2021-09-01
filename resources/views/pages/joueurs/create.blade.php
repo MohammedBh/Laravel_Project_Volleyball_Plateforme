@@ -1,43 +1,39 @@
 @extends('template.main')
 @section('content')
-    @if (session()->has('statut'))
-        <div class="container alert alert-warning mt-2 w-50">
-            {{ session()->get('statut') }}
-        </div>
-    @endif
+@include('partials.flash')
     <section>
         <form action="/joueur" method="POST" enctype="multipart/form-data" class="container w-50 mb-5">
             @csrf
 
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Nom du joueur :</label>
-                <input type="text" name="nom" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                <input type="text" name="nom" value="{{old('nom')}}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
             </div>
 
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Prénom du joueur :</label>
-                <input type="text" name="prenom" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                <input type="text" name="prenom" value="{{old('prenom')}}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
             </div>
 
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Age :</label>
-                <input type="number" name="age" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                <input type="number" name="age" value="{{old('age')}}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
             </div>
 
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Téléphone :</label>
-                <input type="number" min="0" name="telephone" class="form-control" id="exampleInputEmail1"
+                <input type="number" min="0" name="telephone" value="{{old('telephone')}}" class="form-control" id="exampleInputEmail1"
                     aria-describedby="emailHelp">
             </div>
 
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">E-mail :</label>
-                <input type="text" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                <input type="text" name="email" value="{{old('email')}}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
             </div>
 
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Genre:</label>
-                <select name="genre" class="form-select mb-3" aria-label="Default select example">
+                <select name="genre" value="{{old('genre')}}" class="form-select mb-3" aria-label="Default select example">
                     <option value="Homme">Homme</option>
                     <option value="Femme">Femme</option>
                 </select>
@@ -45,12 +41,12 @@
 
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Pays d'origine :</label>
-                <input type="text" name="pays" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                <input type="text" name="pays" value="{{old('pays')}}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
             </div>
 
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Role :</label>
-                <select name="role_id" class="form-select mb-3" aria-label="Default select example">
+                <select name="role_id" value="{{old('role_id')}}" class="form-select mb-3" aria-label="Default select example">
                     @foreach ($roles as $role)
                         <option value="{{ $role->id }}">{{ $role->role }}</option>
                     @endforeach

@@ -75,7 +75,6 @@ class JoueurController extends Controller
             $store->photo_id = $photo->id;
             $store->save();
             return redirect('/joueur');
-
         } else {
 
 
@@ -87,40 +86,40 @@ class JoueurController extends Controller
             switch ($request->role_id) {
                 case 1:
                     if ($avant->count() === 2) {
-                        return redirect()->back()->with("statut", "L'équipe {$equipe->nom} dispose déjà de 2 joueurs à ce poste");
+                        return redirect()->back()->with("statut", "L'équipe {$equipe->nom} dispose déjà de 2 joueurs Avant");
                     }
                     break;
                 case 2:
                     if ($central->count() === 2) {
-                        return redirect()->back()->with("statut", "L'équipe {$equipe->nom} dispose déjà de 2 joueurs à ce poste");
+                        return redirect()->back()->with("statut", "L'équipe {$equipe->nom} dispose déjà de 2 joueurs Centraux");
                     }
                     break;
                 case 3:
                     if ($arriere->count() === 2) {
-                        return redirect()->back()->with("statut", "L'équipe {$equipe->nom} dispose déjà de 2 joueurs à ce poste");
+                        return redirect()->back()->with("statut", "L'équipe {$equipe->nom} dispose déjà de 2 joueurs Arrière");
                     }
                     break;
             }
 
-        $photo = new Photo;
-        Storage::put('public/img/', $request->file('src'));
-        $photo->src = $request->file('src')->hashName();
-        $photo->save();
+            $photo = new Photo;
+            Storage::put('public/img/', $request->file('src'));
+            $photo->src = $request->file('src')->hashName();
+            $photo->save();
 
-        $store = new Joueur;
-        $store->nom = $request->nom;
-        $store->prenom = $request->prenom;
-        $store->age = $request->age;
-        $store->telephone = $request->telephone;
-        $store->email = $request->email;
-        $store->genre = $request->genre;
-        $store->pays = $request->pays;
-        $store->role_id = $request->role_id;
-        $store->equipe_id = $request->equipe_id;
-        $store->photo_id = $photo->id;
-        $store->save();
-        return redirect('/joueur');
-    }
+            $store = new Joueur;
+            $store->nom = $request->nom;
+            $store->prenom = $request->prenom;
+            $store->age = $request->age;
+            $store->telephone = $request->telephone;
+            $store->email = $request->email;
+            $store->genre = $request->genre;
+            $store->pays = $request->pays;
+            $store->role_id = $request->role_id;
+            $store->equipe_id = $request->equipe_id;
+            $store->photo_id = $photo->id;
+            $store->save();
+            return redirect('/joueur')->with('success', 'Une équipe a été crée !');
+        }
     }
     /**
      * Display the specified resource.
@@ -188,6 +187,6 @@ class JoueurController extends Controller
     {
         $destroy = Joueur::find($id);
         $destroy->delete();
-        return redirect('/joueur');
+        return redirect('/joueur')->with('warning', 'Une équipe a été supprimé !');
     }
 }
