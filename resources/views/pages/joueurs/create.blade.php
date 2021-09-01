@@ -21,7 +21,7 @@
 
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Téléphone :</label>
-                <input type="number" name="telephone" class="form-control" id="exampleInputEmail1"
+                <input type="number" min="0" name="telephone" class="form-control" id="exampleInputEmail1"
                     aria-describedby="emailHelp">
             </div>
 
@@ -33,7 +33,6 @@
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Genre:</label>
                 <select name="genre" class="form-select mb-3" aria-label="Default select example">
-                    <option selected>Choisir un genre</option>
                     <option value="Homme">Homme</option>
                     <option value="Femme">Femme</option>
                 </select>
@@ -47,7 +46,6 @@
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Role :</label>
                 <select name="role_id" class="form-select mb-3" aria-label="Default select example">
-                    <option selected>Choisir un role</option>
                     @foreach ($roles as $role)
                         <option value="{{ $role->id }}">{{ $role->role }}</option>
                     @endforeach
@@ -57,7 +55,6 @@
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Equipe:</label>
                 <select name="equipe_id" class="form-select mb-3" aria-label="Default select example">
-                    <option selected>Choisir une équipe</option>
                     @foreach ($equipes as $equipe)
                         <option value="{{ $equipe->id }}">{{ $equipe->nom }}</option>
                     @endforeach

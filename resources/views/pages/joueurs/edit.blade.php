@@ -42,21 +42,28 @@
                     <input type="text" name="pays" value="{{ $edit->pays }}" class="form-control"
                         id="exampleInputEmail1" aria-describedby="emailHelp">
                 </div>
-                <select name="role_id" class="form-select mb-3" value="{{ $edit->role_id }}"
-                    aria-label="Default select example">
-                    @foreach ($roles as $role)
-                        <option value="{{ $role->id }}" 
-                            {{ $edit->roles->role == $role->role ? 'selected' : null }}>
-                            {{ $role->role }}</option>
-                    @endforeach
-                </select>
-                <select name="equipe_id" class="form-select mb-3" value="{{ $edit->equipe_id }}"
-                    aria-label="Default select example">
-                    @foreach ($equipes as $equipe)
-                        <option value="{{ $equipe->id }}"
-                            {{ $edit->equipes->nom == $equipe->nom ? 'selected' : null }}>{{ $equipe->nom }}</option>
-                    @endforeach
-                </select>
+                <div>
+                    <label for="exampleInputEmail1" class="form-label">Role :</label>
+                    <select name="role_id" class="form-select mb-3" value="{{ $edit->role_id }}"
+                        aria-label="Default select example">
+                        <option selected>Choisir un role</option>
+                        @foreach ($roles as $role)
+                            <option value="{{ $role->id }}" {{ $edit->role_id == $role->role ? 'selected' : null }}>
+                                {{ $role->role }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div>
+                    <label for="exampleInputEmail1" class="form-label">Équipe :</label>
+                    <select name="equipe_id" class="form-select mb-3" value="{{ $edit->equipe_id }}"
+                        aria-label="Default select example">
+                        <option selected>Choisir une equipe</option>
+                        @foreach ($equipes as $equipe)
+                            <option value="{{ $equipe->id }}"
+                                {{ $edit->equipe_id == $equipe->nom ? 'selected' : null }}>{{ $equipe->nom }}</option>
+                        @endforeach
+                    </select>
+                </div>
                 <div class="mb-3">
                     <label for="formFile" class="form-label">Photo de profile :</label>
                     <input class="form-control" name="src" type="file" id="formFile">

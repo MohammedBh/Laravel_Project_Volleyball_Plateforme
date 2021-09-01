@@ -1,5 +1,6 @@
 @extends('template.main')
 @section('content')
+    @include('partials.flash')
     <section>
         <form action="/equipe" method="POST" class="container w-50 mb-5">
             @csrf
@@ -20,8 +21,8 @@
             </div>
 
             <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">Max. Joueurs :</label>
-                <input type="number" min="0" name="joueursMax" class="form-control" id="exampleInputEmail1"
+                <label for="exampleInputEmail1" class="form-label">Max. Joueurs (min 7 joueurs ) :</label>
+                <input type="number" min="7" name="joueursMax" class="form-control" id="exampleInputEmail1"
                     aria-describedby="emailHelp">
             </div>
 

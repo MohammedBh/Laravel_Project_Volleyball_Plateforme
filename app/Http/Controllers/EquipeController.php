@@ -46,7 +46,7 @@ class EquipeController extends Controller
         $store->joueursMax = $request->joueursMax;
         $store->continent_id = $request->continent_id;
         $store->save();
-        return redirect('/equipe');
+        return redirect('/equipe')->with('success', 'Une équipe a été crée !');
     }
 
     /**
@@ -58,7 +58,8 @@ class EquipeController extends Controller
     public function show($id)
     {
         $show = Equipe::find($id);
-        return view('pages.equipes.show', compact('show'));
+        $joueurs = Joueur::all();
+        return view('pages.equipes.show', compact('show', 'joueurs'));
     }
 
     /**
@@ -103,6 +104,6 @@ class EquipeController extends Controller
     {
         $destroy = Equipe::find($id);
         $destroy->delete();
-        return redirect('/equipe');
+        return redirect('/equipe')->with('warning', 'Une équipe a été supprimé !');
     }
 }
