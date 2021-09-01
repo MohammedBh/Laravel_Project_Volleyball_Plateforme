@@ -3,11 +3,13 @@
 use App\Http\Controllers\ContinentController;
 use App\Http\Controllers\EquipeController;
 use App\Http\Controllers\JoueurController;
+use App\Http\Controllers\WelcomeController;
 use App\Models\Continent;
 use App\Models\Equipe;
 use App\Models\Joueur;
 use App\Models\Photo;
 use App\Models\Role;
+use App\Models\Welcome;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,9 +23,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 // INDEX -> HOME
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [WelcomeController::class, 'index']);
 
 // INDEX & SHOW -> TEAMS
 Route::get('/allequipes', function () {

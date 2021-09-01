@@ -80,6 +80,10 @@
   border-radius: 10px;
 }
 
+.bgwarning{
+  background: rgb(255, 174, 0) !important;
+}
+
 body {
   margin: 0;
   font-family: var(--bs-body-font-family);
