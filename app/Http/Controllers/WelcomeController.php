@@ -23,11 +23,28 @@ class WelcomeController extends Controller
         $Europe = $equipes->where('continent_id', '==', 1);
 
         $femmeRandom = $joueurs->where("genre", "=", "Femme")->random(5);
+        $femmeTeam = $femmeRandom->where('team_id', '!=', null);
+
         $hommeRandom = $joueurs->where("genre", "=", "Homme")->random(5);
+        $hommeTeam = $hommeRandom->where('team_id', '!=', null);
+
+        $noTeam = $joueurs->where('team_id', '=', null);
+        if (count($noTeam) > 4) {
+            $withTeamRandon = $noTeam->random(4);
+        } else {
+            $noTeamRandom = $noTeam;
+        }
+
+        $withTeam = $joueurs->where('team_id', '!=', null);
+        if (count($withTeam) > 4) {
+            $withTeamRandom = $withTeam->random(4);
+        } else{
+            $withTeamRandom = $withTeam;
+        }
 
 
 
-        return view('welcome', compact('joueurs', 'equipes', 'horsEurope', 'Europe', 'femmeRandom', 'hommeRandom'));
+        return view('welcome', compact('joueurs', 'equipes', 'horsEurope', 'Europe', 'femmeRandom', 'femmeTeam', 'hommeRandom', 'hommeTeam', 'withTeam', 'noTeam', 'withTeamRandom'));
     }
 
     /**

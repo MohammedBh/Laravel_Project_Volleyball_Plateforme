@@ -43,6 +43,65 @@ class JoueurController extends Controller
      */
     public function store(Request $request)
     {
+        request()->validate([
+            'nom' => ['required', 'min:2', 'max:35'],
+            'prenom' => ['required', 'min:2', 'max:35'],
+            'age' => ['required', 'min:1', 'max:100'],
+            'telephone' => ['required', 'min:9', 'max:20'],
+            'email' => ['required', 'min:5', 'max:35'],
+            'genre' => ['required'],
+            'pays' => ['required', 'min:2', 'max:35'],
+            'role_id' => ['required'],
+            'equipe_id' => ['required'],
+        ]);
+
+        $equipe = Equipe::find($request->equipe_id);
+
+        if ($request->equipe_id == null) {
+            $photo = new Photo;
+            $photo->src = $request->file("src")->hashName();
+            Storage::put("public/img", $request->file("src"));
+            $photo->save();
+
+            $store = new Joueur;
+            $store->nom = $request->nom;
+            $store->prenom = $request->prenom;
+            $store->age = $request->age;
+            $store->telephone = $request->telephone;
+            $store->email = $request->email;
+            $store->genre = $request->genre;
+            $store->role_id = $request->role_id;
+            $store->equipe_id = $request->equipe_id;
+            $store->photo_id = $photo->id;
+            $store->save();
+            return redirect('/joueur');
+
+        } else {
+
+
+            $avant = Joueur::all()->where("role_id", 1)->where("equipe_id", $equipe->id);
+            $central = Joueur::all()->where("role_id", 2)->where("equipe_id", $equipe->id);
+            $arriere = Joueur::all()->where("role_id", 3)->where("equipe_id", $equipe->id);
+
+
+            switch ($request->role_id) {
+                case 1:
+                    if ($avant->count() === 2) {
+                        return redirect()->back()->with("statut", "L'équipe {$equipe->nom} dispose déjà de 2 joueurs à ce poste");
+                    }
+                    break;
+                case 2:
+                    if ($central->count() === 2) {
+                        return redirect()->back()->with("statut", "L'équipe {$equipe->nom} dispose déjà de 2 joueurs à ce poste");
+                    }
+                    break;
+                case 3:
+                    if ($arriere->count() === 2) {
+                        return redirect()->back()->with("statut", "L'équipe {$equipe->nom} dispose déjà de 2 joueurs à ce poste");
+                    }
+                    break;
+            }
+
         $photo = new Photo;
         Storage::put('public/img/', $request->file('src'));
         $photo->src = $request->file('src')->hashName();
@@ -62,7 +121,7 @@ class JoueurController extends Controller
         $store->save();
         return redirect('/joueur');
     }
-
+    }
     /**
      * Display the specified resource.
      *

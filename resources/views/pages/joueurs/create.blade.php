@@ -1,5 +1,10 @@
 @extends('template.main')
 @section('content')
+    @if (session()->has('statut'))
+        <div class="container alert alert-warning mt-2 w-50">
+            {{ session()->get('statut') }}
+        </div>
+    @endif
     <section>
         <form action="/joueur" method="POST" enctype="multipart/form-data" class="container w-50 mb-5">
             @csrf
@@ -55,6 +60,7 @@
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Equipe:</label>
                 <select name="equipe_id" class="form-select mb-3" aria-label="Default select example">
+                    <option value="NULL">Aucune Équipe</option>
                     @foreach ($equipes as $equipe)
                         <option value="{{ $equipe->id }}">{{ $equipe->nom }}</option>
                     @endforeach
@@ -66,7 +72,7 @@
                 <input class="form-control" name="src" type="file" id="formFile">
             </div>
 
-            <button type="submit" class="btn btn-primary text-white">Créer</button>
+            <button type="submit" class="btn btn-primary text-white px-4"><i class="fas fa-plus"></i></button>
         </form>
     </section>
     <section>
@@ -103,13 +109,13 @@
                         <td class="text-center">{{ $joueur->equipes->nom }}</td>
                         <td class="text-center">{{ $joueur->photos->src }}</td>
                         <td class="text-center">
-                            <a class="btn btn-success text-white" href="/joueur/{{ $joueur->id }}/edit">EDIT</a>
+                            <a class="btn btn-success text-white" href="/joueur/{{ $joueur->id }}/edit"><i class="fas fa-edit px-2"></i></a>
                         </td>
                         <td class="text-center">
                             <form action="/joueur/{{ $joueur->id }}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <button class="btn btn-danger text-white" type="submit">DELETE</button>
+                                <button class="btn btn-danger text-white" type="submit"><i class="fas fa-times px-2"></i></button>
                             </form>
                         </td>
                     </tr>

@@ -35,7 +35,7 @@
                 </select>
             </div>
 
-            <button type="submit" class="btn btn-primary text-white">Créer</button>
+            <button type="submit" class="btn btn-primary text-white px-4"><i class="fas fa-plus"></i></button>
         </form>
     </section>
     <section>
@@ -60,15 +60,15 @@
                         <td>{{ $equipe->ville }}</td>
                         <td>{{ $equipe->pays }}</td>
                         <td>{{ $equipe->joueursMax }}</td>
-                        <td>{{ $equipe->continents->continent }}</td>>
+                        <td>{{ $equipe->continents->continent }}</td>
                         <td class="text-center">
-                            <a class="btn btn-success text-white" href="/equipe/{{ $equipe->id }}/edit">EDIT</a>
+                            <a class="btn btn-success text-white" href="/equipe/{{ $equipe->id }}/edit"><i class="fas fa-edit px-2"></i></a>
                         </td>
                         <td class="text-center">
                             <form action="/equipe/{{ $equipe->id }}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <button class="btn btn-danger text-white" type="submit">DELETE</button>
+                                <button class="btn btn-danger text-white" type="submit"><i class="fas fa-times px-2"></i></button>
                             </form>
                         </td>
                     </tr>
