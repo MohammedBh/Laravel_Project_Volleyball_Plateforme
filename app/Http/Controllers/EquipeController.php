@@ -39,6 +39,7 @@ class EquipeController extends Controller
      */
     public function store(Request $request)
     {
+        
         $store = new Equipe;
         $store->nom = $request->nom;
         $store->ville = $request->ville;

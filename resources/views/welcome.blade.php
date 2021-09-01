@@ -1,15 +1,9 @@
 @extends('template.main')
 @section('content')
     <section class="container my-5 text-center">
-        <div class="my-5">
-            <a href="/allequipes">
-                <h4>Toutes les Équipes</h4>
-            </a>
-        </div>
-        <div class="my-5">
-            <a href="#">
-                <h4>Tous les Joueurs</h4>
-            </a>
+        <div class="my-5 py-5">
+            <a href="/allequipes"><button type="button" class="btn btn-primary text-white mx-3 py-4 px-5 fs-2">Toutes les Équipes</button></a>
+            <a href="/alljoueurs"><button type="button" class="btn btn-primary text-white mx-3 py-4 px-5 fs-2">Tous les Joueurs</button></a>
         </div>
     </section>
 @endsection

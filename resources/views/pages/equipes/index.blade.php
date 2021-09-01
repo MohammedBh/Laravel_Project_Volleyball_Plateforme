@@ -17,7 +17,7 @@
                         <th scope="row">{{ $allequipe->id }}</th>
                         <td>{{ $allequipe->nom }}</td>
                         <td>{{ $allequipe->ville }}</td>
-                        <td>{{ $allequipe->joueursMax }}</td>
+                        <td>{{$allequipe->joueurs->count()}} / {{ $allequipe->joueursMax }}</td>
                         <td class="text-center">
                             <a class="btn btn-primary text-white" title="Show team" href="/allequipe/{{ $allequipe->id }}/show"><i class="fas fa-eye text-white"></i></a>
                         </td>

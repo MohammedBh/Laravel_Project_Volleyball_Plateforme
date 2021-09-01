@@ -69,9 +69,10 @@ class JoueurController extends Controller
      * @param  \App\Models\Joueur  $joueur
      * @return \Illuminate\Http\Response
      */
-    public function show(Joueur $joueur)
+    public function show($id)
     {
-        //
+        $show = Joueur::find($id);
+        return view('pages.joueurs.index', compact('show'));
     }
 
     /**

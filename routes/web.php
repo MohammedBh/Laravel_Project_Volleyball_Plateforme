@@ -6,6 +6,8 @@ use App\Http\Controllers\JoueurController;
 use App\Models\Continent;
 use App\Models\Equipe;
 use App\Models\Joueur;
+use App\Models\Photo;
+use App\Models\Role;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,12 +31,23 @@ Route::get('/allequipes', function () {
     return view('pages.equipes.index', compact('allequipes'));
 });
 
-Route::get('/joueur/{id}/show', function () {
-    $joueurs = Joueur::all();
+Route::get('/joueur/{id}/show', function ($id) {
+    $joueurs = Joueur::find($id);
     return view('pages.equipes.joueursShow.show', compact('joueurs'));
 });
 
 Route::get('/allequipe/{id}/show', [EquipeController::class, 'show']);
+
+// INDEX & SHOW -> PLAYERS
+Route::get('/alljoueurs', function () {
+    $alljoueurs = Joueur::all();
+    return view('pages.joueurs.index', compact('alljoueurs'));
+});
+
+Route::get('/joueur/{id}/show', function ($id) {
+    $joueurs = Joueur::find($id);
+    return view('pages.joueurs.joueursShow.show', compact('joueurs'));
+});
 
 // RESOURCES -> EQUIPE, CONTINENT, JOUEUR
 Route::resource('equipe', EquipeController::class);

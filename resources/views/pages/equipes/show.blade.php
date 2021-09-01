@@ -23,7 +23,7 @@
     </section>
     <section>
         <div class="pt-5">
-            <h4 class="text-center mt-5">Joueurs qui ont font partie.</h4>
+            <h4 class="text-center mt-5">Joueurs qui en font partie.</h4>
         </div>
         <table class="table container w-75 mt-5">
             <thead>
